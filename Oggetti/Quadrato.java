@@ -51,6 +51,16 @@ public class Quadrato {
         return area;
     }
 
+    // Metodo SET
+    public void setLato (int l) {
+        lato = l;
+    }
+
+    // Metodo GET
+    public int getLato (int l) {
+        return lato;
+    }
+
     // Main trasferito in Main.java
 
 }
