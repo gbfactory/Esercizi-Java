@@ -2,7 +2,7 @@ package oggetti;
 
 import java.util.Scanner;
 
-public class Main {
+public class MainQuadrato {
 
     public static void main(String[] args) {
 
