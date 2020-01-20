@@ -30,9 +30,15 @@ public class Cerchio {
 
     // Costruttori
 
-    // Costruttore di defulat
+    // Costruttore di default 
     public Cerchio() {
         raggio = 0;
+        // se dichiaro int raggio = 0 -> scope resolution, la variabile locale viene vista prima di quella globale
+    }
+    
+    // Costruttore con raggio
+    public Cerchio(int r) {
+        raggio = r;
     }
 
     // Metodi
@@ -65,14 +71,14 @@ public class Cerchio {
     }
 
     // Calcola circonferenza
-    public int calcoloCirconferenza() {
-        int circonferenza = (int) (2 * Math.PI * raggio);
+    public double calcoloCirconferenza() {
+        double circonferenza = 2 * Math.PI * raggio;
         return circonferenza;
     }
 
     // Calcolo Area
-    public int calcolaArea() {
-        int area = (int) (Math.PI * raggio * raggio);
+    public double calcolaArea() {
+        double area = Math.PI * raggio * raggio;
         return area;
     }
 
