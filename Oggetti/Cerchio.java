@@ -8,6 +8,7 @@ package oggetti;
  *
  * Elenco:
  * 	- Costruttore di default -> Cerchio()
+ +  - Costruttore con parametro -> Cerchio(r)
  *  - SET raggio
  *  - GET raggio
  *  - Inserisci raggio
@@ -30,22 +31,26 @@ public class Cerchio {
 
     // Costruttori
 
-    // Costruttore di default 
+    // Costruttore di default
     public Cerchio() {
         raggio = 0;
         // se dichiaro int raggio = 0 -> scope resolution, la variabile locale viene vista prima di quella globale
     }
-    
+
     // Costruttore con raggio
     public Cerchio(int r) {
-        raggio = r;
+        setRaggio(r);
     }
 
     // Metodi
 
     // SET raggio
     public void setRaggio(int r) {
-        raggio = r;
+        if (r < 0) {
+            raggio = 0;
+        } else {
+            raggio = r;
+        }
     }
 
     // GET raggio
