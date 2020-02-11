@@ -1,33 +1,51 @@
+package ereditarieta;
+
 /**
- * EREDITARIETA'
- *
- * 10 02 2020
- *
+ * Classe Quadrato (ereditarietà)
+ * @author gbfactory
+ * @date 10 02 2020
+ */
+
+import java.util.Scanner;
+
+/*
  * SINGOLA          extends     CLASS
  * MULTIPLA         implements  INTERFACCE
  */
-
-package ereditarieta;
-
-import java.util.Scanner;
 
 public class Quadrato {
 
     private int lato;
 
+    /**
+     * Costruttore di default con lato = 0
+     */
     public Quadrato() {
         lato = 0;
     }
 
+    /**
+     * Costruttore con lato passato come parametri
+     * @param l
+     */
     public Quadrato(int l) {
         lato = l;
     }
 
     /**
-     * Metodo stampare il lato del quadrato
+     * setLato
+     * @param lato
      */
-    public void visualizza() {
-        System.out.println("Il lato del quadrato e': " + lato);
+    public void setLato(int lato) {
+        this.lato = lato;
+    }
+
+    /**
+     * getLato
+     * @return int
+     */
+    public int getLato() {
+        return this.lato;
     }
 
     /**
@@ -42,7 +60,15 @@ public class Quadrato {
     }
 
     /**
-     * Metodo per stampare l'area del quadrato
+     * Metodo per visualizzare il lato del quadrato
+     */
+    public void visualizza() {
+        System.out.println("Il lato del quadrato e': " + lato);
+    }
+
+
+    /**
+     * Metodo per visualizzare l'area del quadrato
      */
     public void visualizzaArea() {
         System.out.println("L'area e': "+ calcolaArea());
@@ -60,4 +86,44 @@ public class Quadrato {
             lato=scan.nextInt();
         }
     }
+
+    /**
+     * Metodo tostring
+     * @return String
+     */
+    public String toString() {
+        String s = "";
+        s += "\n" + getLato();
+
+        return s;
+    }
+
+    /**
+     * Metodo per controllare se due quadrati sono uguali
+     * @param q
+     * @return boolean
+     */
+    public boolean equals(Quadrato q) {
+        if (this.getLato() == q.getLato()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Metodo per comparare due quadrati
+     * @param q
+     * @return int
+     */
+    public int compareTo(Quadrato q) {
+        if (this.lato == q.lato) {
+            return 0;
+        } else if (this.lato > q.lato) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
 }
