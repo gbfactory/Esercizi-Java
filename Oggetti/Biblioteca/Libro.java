@@ -1,113 +1,242 @@
-package oggetti;
-import java.util.*;
+package biblioteca;
+
+/**
+ * Classe Libro
+ * 
+ * @author gbfactory, avv
+ * @version 2.0
+ * @since 30/01/2020
+ */
+
+import java.util.Scanner;
 
 public class Libro {
-	
-	private String isbn;
-	private String titolo;
-	private String autore;
-	private String argomento;
-	private double prezzo;
-	
-	public Libro() {
-		titolo = "";
-		autore = "";
-		argomento = "";
-		prezzo = 0;
-		isbn = "";
-	}
-	
-	public Libro(String isbn, String titolo, String autore, String argomento, double prezzo) {
-		this.isbn = isbn;
-		this.titolo = titolo;
-		this.autore = autore;
-		this.argomento = argomento;
-		if (prezzo < 0) 
-			this.prezzo = 0;
-		else 
-			this.prezzo = prezzo;
-	}
 
-	
-	public String getIsbn() {
-		return isbn;
-	}
-	
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
-	
-	public String getTitolo() {
-		return titolo;
-	}
+    // **************************************************
+    // Attributi
+    // **************************************************
 
-	public void setTitolo(String titolo) {
-		this.titolo = titolo;
-	}
+    private String isbn;
+    private String titolo;
+    private String autore;
+    private String argomento;
+    private double prezzo;
 
-	public String getAutore() {
-		return autore;
-	}
 
-	public void setAutore(String autore) {
-		this.autore = autore;
-	}
+    // **************************************************
+    // Metodi privati
+    // **************************************************
 
-	public String getArgomento() {
-		return argomento;
-	}
+    /**
+     * Metodo per controllare che una stringa è valida
+     *
+     * @param str Stringa da controllare
+     * @return Restitusce true se la stringa non è nulla e non è vuota, false in caso contrario
+     */
+    private boolean checkString(String str) {
+        if (str != null && !str.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	public void setArgomento(String argomento) {
-		this.argomento = argomento;
-	}
+    /**
+     * Metodo per controllare che un numero intero sia valido
+     *
+     * @param num Numero da controllarr
+     * @return Restituisce true se il numero è maggiore di 0, false in caso contrario
+     */
+    private boolean checkNum(double num) {
+        if (num > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	public double getPrezzo() {
-		return prezzo;
-	}
+    /**
+     * Controllo codice isbn (lunghezza e stringa)
+     *
+     * @param isbn Codice isbn
+     * @return boolean (true valido, false non valido)
+     */
+    private boolean checkIsbn(String isbn) {
+        if (isbn.length() < 13 && isbn.length() > 0 && checkString(isbn)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	public void setPrezzo(double prezzo) {
-		if (prezzo < 0) 
-			this.prezzo = 0;
-		else 
-			this.prezzo = prezzo;
-	}
-	
-	public void inserisci() {
-		Scanner tastiera = new Scanner(System.in);
-		//do {
-		System.out.print("Inserisci isbn: ");
-		isbn = tastiera.nextLine();
-		//}while();
-		System.out.print("Inserisci titolo: ");
-		titolo = tastiera.nextLine();
-		System.out.print("Inserisci autore: ");
-		autore = tastiera.nextLine();
-		do {
-			System.out.print("Inserisci prezzo: ");
-			prezzo = tastiera.nextDouble();
-		}while(prezzo < 0);
-		//per scaricare il buffer di tastiera
-		tastiera.nextLine();
-		System.out.print("Inserisci argomento: ");
-		argomento = tastiera.nextLine();
-		
-	}
-	
-	public void visualizza() {
-		System.out.println("isbn: " + isbn);
-		System.out.println("titolo: " + titolo);
-		System.out.println("autore: " + autore);
-		System.out.println("argomento: " + argomento);
-		System.out.println("prezzo: " + prezzo);
-	}
-	
-	public String toString() {
-		String s;
-		s = "isbn: " + isbn;
-		s = s + "\ntitolo: " + titolo;
-		s = s + "\nautore: " + autore;
-		s = s + "\nargomento: " + argomento;
-		s = s + "\nprezzo: " + prezzo;
-		return s;
-	}
+
+    // **************************************************
+    // Metodi pubblici
+    // **************************************************
+
+    // Metodi set/get
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        if (checkIsbn(isbn)) {
+            this.isbn = isbn;
+        } else {
+            this.isbn = "";
+        }
+    }
+
+    public String getTitolo() {
+        return titolo;
+    }
+
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
+    }
+
+    public String getAutore() {
+        return autore;
+    }
+
+    public void setAutore(String autore) {
+        if (checkString(autore)) {
+            this.autore = autore;
+        } else {
+            this.autore = "";
+        }
+    }
+
+    public String getArgomento() {
+        return argomento;
+    }
+
+    public void setArgomento(String argomento) {
+        if (checkString(argomento)) {
+            this.argomento = argomento;
+        }
+    }
+
+    public double getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(double prezzo) {
+        if (checkNum(prezzo)) {
+            this.prezzo = prezzo;
+        } else {
+            this.prezzo = 0;
+        }
+    }
+
+    // Metodo inserisci
+
+    /**
+     * Metodo inserisci per inserire da tastiera tutti i dati di un libro.
+     */
+    public void inserisci() {
+        Scanner scan = new Scanner(System.in);
+
+        String input = "";
+        do {
+            System.out.println("Inserisci ISBN: ");
+            input = scan.nextLine();
+        } while (!checkIsbn(input));
+        this.isbn = input;
+
+        input = "";
+        do {
+            System.out.println("Inserisci il titolo: ");
+            input = scan.nextLine();
+        } while (!checkString(input));
+
+        input = "";
+        do {
+            System.out.println("Inserisci autore: ");
+            input = scan.nextLine();
+        } while (!checkString(autore));
+        this.autore = input;
+
+        double num = 0;
+        do {
+            System.out.print("Inserisci prezzo: ");
+            num = scan.nextDouble();
+        } while (!checkNum(num));
+
+        //per scaricare il buffer di tastiera
+        scan.nextLine();
+
+        input = "";
+        do {
+            System.out.println("Inserisci argomento: ");
+            input = scan.nextLine();
+        } while (!checkString(input));
+        this.argomento = input;
+
+    }
+
+    // Metodo visualizza
+
+    /**
+     * Metodo visualizza per visualizzare tutte i dati di un libro
+     */
+    public void visualizza() {
+        System.out.println("=============================");
+        System.out.println("ISBN: " + isbn);
+        System.out.println("Titolo: " + titolo);
+        System.out.println("Autore: " + autore);
+        System.out.println("Argomento: " + argomento);
+        System.out.println("Prezzo: " + prezzo);
+        System.out.println("=============================");
+    }
+
+    // Metodo tostring
+
+    /**
+     * Metodo toString
+     * @return stringa di dati del libro
+     */
+    public String toString() {
+        return "Libro{" +
+                "isbn='" + isbn + '\'' +
+                ", titolo='" + titolo + '\'' +
+                ", autore='" + autore + '\'' +
+                ", argomento='" + argomento + '\'' +
+                ", prezzo=" + prezzo +
+                '}';
+    }
+
+
+    // **************************************************
+    // Costruttori
+    // **************************************************
+
+    /**
+     * Costruttore di default senza parametri
+     */
+    public Libro() {
+        titolo = "";
+        autore = "";
+        argomento = "";
+        prezzo = 0;
+        isbn = "";
+    }
+
+    /**
+     * Costruttore con parametri e metodi get
+     * @param isbn Codice isbn del libro
+     * @param titolo Titolo del libro
+     * @param autore Autore del libro
+     * @param argomento Argomento del libro
+     * @param prezzo Prezzo del libro
+     */
+    public Libro(String isbn, String titolo, String autore, String argomento, double prezzo) {
+        setIsbn(isbn);
+        setTitolo(titolo);
+        setAutore(autore);
+        setArgomento(argomento);
+        setPrezzo(prezzo);
+    }
+
 }
