@@ -1,10 +1,10 @@
-package biblioteca;
+package bibliotecaNew;
 
 /**
  * Classe Libro
- * 
+ *
  * @author gbfactory, avv
- * @version 2.0
+ * @version 2.1
  * @since 30/01/2020
  */
 
@@ -150,12 +150,13 @@ public class Libro {
             System.out.println("Inserisci il titolo: ");
             input = scan.nextLine();
         } while (!checkString(input));
+        this.titolo = input;
 
         input = "";
         do {
             System.out.println("Inserisci autore: ");
             input = scan.nextLine();
-        } while (!checkString(autore));
+        } while (!checkString(input));
         this.autore = input;
 
         double num = 0;
@@ -163,6 +164,7 @@ public class Libro {
             System.out.print("Inserisci prezzo: ");
             num = scan.nextDouble();
         } while (!checkNum(num));
+        this.prezzo = num;
 
         //per scaricare il buffer di tastiera
         scan.nextLine();
