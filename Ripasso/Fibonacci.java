@@ -7,7 +7,9 @@ public class Fibonacci {
         System.out.println("Inserisci un numero intero maggiore di 0: ");
         int numero = scan.nextInt();
 
-        System.out.println("Fibonacci " + numero + ": " + fibonacci(numero));
+        for(int i = 0; i < numero; i++) {
+            System.out.println("n" + i + ": " + fibonacci(i));
+        }
     }
 
     public static long fibonacci(int n) {
